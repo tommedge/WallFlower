@@ -74,7 +74,7 @@ fn do_fetch_photo(url: &Url) -> Result<(), WallflowerError> {
 }
 
 fn fetch_photo(photo: Photo, tx: std::sync::mpsc::Sender<Result<(), WallflowerError>>) {
-    tx.send(do_fetch_photo(&photo.url_k))
+    tx.send(do_fetch_photo(&photo.url_o))
         .expect("error sending to channel");
 }
 
@@ -89,14 +89,14 @@ fn update_photostream(user_id: &str, client: &AuthenticatedClient) -> Result<(),
 
     // Check the last 500 photos
     // TODO: photos page="2" pages="89" perpage="10" total="881">
-    // Stop if there are fewer than 5 pages
+    // Stop if there are fewer than 5 paFlickrErrorges
     for page in 1..6 {
         let arguments = [
-            ("min_taken_date", "1388494800".to_string()),
+            ("min_taken_date", "1136073600".to_string()),
             ("content_type", "1".to_string()), // Photos only
             ("per_page", "100".to_string()),
             ("page", page.to_string()),
-            ("extras", "url_k".to_string()),
+            ("extras", "url_o".to_string()),
         ];
         let photos = client.photos(user_id, &arguments)?;
 

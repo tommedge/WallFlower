@@ -76,9 +76,9 @@ struct PhotoRaw {
     title: String,
     #[serde(rename = "ispublic")]
     public: u32,
-    url_k: String, // TODO: Add serde Url crate
-    height_k: Dimension,
-    width_k: Dimension,
+    url_o: String, // TODO: Add serde Url crate
+    height_o: Dimension,
+    width_o: Dimension,
     secret: Option<String>,
 }
 
@@ -86,9 +86,9 @@ struct PhotoRaw {
 pub struct Photo {
     pub title: String,
     pub public: bool,
-    pub url_k: Url,
-    pub height_k: u32,
-    pub width_k: u32,
+    pub url_o: Url,
+    pub height_o: u32,
+    pub width_o: u32,
     pub secret: Option<String>,
 }
 
@@ -99,9 +99,9 @@ impl TryFrom<PhotoRaw> for Photo {
         Ok(Photo {
             title: raw.title,
             public: raw.public == 1,
-            url_k: raw.url_k.parse()?,
-            height_k: u32::try_from(raw.height_k)?,
-            width_k: u32::try_from(raw.width_k)?,
+            url_o: raw.url_o.parse()?,
+            height_o: u32::try_from(raw.height_o)?,
+            width_o: u32::try_from(raw.width_o)?,
             secret: raw.secret,
         })
     }
